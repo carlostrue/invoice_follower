@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Invoice Follower</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        Invoice Follower
+      </h1>
+      <p class="subtitle">
+        This is an activity of the CeroUno.io Summer Camp.
+      </p>
+      &nbsp;
+      <table style="width:80%">
+  <tr>
+    <th>Invoice Link</th>
+    <th>To be Sent</th> 
+    <th>Sent</th> 
+    <th>Actions</th>
+  </tr>
+  <% pdfs.each do |pdf| %>
+  <tr>
+    <form action="/move" method="post">
+    <td><%=pdf[:invoices_link]%></td>
+    <input type="hidden" name="invoices_link" value="<%=pdf[:invoices_link]%>">
+    <td><%=pdf[:invoices_to_be_sent]%></td>
+    <input type="hidden" name="invoices_to_be_sent" value="<%=pdf[:invoices_to_be_sent]%>">
+    <td><%=pdf[:invoices_sent]%></td>
+    <input type="hidden" name="invoices_sent" value="<%=pdf[:invoices_sent]%>">
+    <td><input type="submit" value="Send Invoice"></td>
+    </form>
+  </tr>
+<% end %>
+</table>
+    </div>
+  </section>
+  </body>
+</html>
